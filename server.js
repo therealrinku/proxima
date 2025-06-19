@@ -5,7 +5,7 @@ const path = require("path");
 const server = http.createServer((req, res)=>{
   if(req.url==="/"){
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    const html = fs.readFileSync(path.join(__dirname,'./tools/quotemaker/index.html'));
+    const html = fs.readFileSync(path.join(__dirname,'./tools/index.html'));
     res.end(html);
   }
   else{

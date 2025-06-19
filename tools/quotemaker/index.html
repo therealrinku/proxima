@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Maker</title>
+    <script src="./html2canvas.min.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+   <div class="flex flex-col items-center justify-center h-screen w-screen text-xs">
+    <div class="p-5 flex justify-between items-center gap-7 h-[500px] w-[60vw] mx-auto bg-gray-200 bg-gray-200 shadow-md rounded-md">
+       <div class="w-[40%] flex flex-col gap-5 items-stretch">
+          <div class="flex flex-col gap-2">
+            <label class="font-bold">Background Color</label>
+            <input value="#fff" id="bgcolorinput" type="text" class="bg-gray-300 w-full h-8 px-2 outline-none rounded"/>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label  class="font-bold">Text</label>
+            <textarea  id="textinput" class="bg-gray-300 w-full p-2 min-h-24 max-h-24 outline-none rounded">Your quote here.</textarea>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="font-bold">Text Color</label>
+            <input value="#000" id="textcolorinput" type="text" class="bg-gray-300 w-full h-8 px-2 outline-none rounded"/>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="font-bold">Text Size(in Px)</label>
+            <input value="14" id="textsizeinput" type="number" class="bg-gray-300 w-full h-8 px-2 outline-none rounded"/>
+          </div>
+
+          <div class="flex flex-col gap-2">
+             <label class="font-bold">Font Family</label>
+             <div class="flex items-center gap-2">
+               <input name="fontfamily" checked="true" value="inherit" id="textfontfamilyinput1" type="radio"/>
+               <label for="fontfamily">Font 1</label>
+             </div>
+             <div class="flex items-center gap-2">
+               <input name="fontfamily" value="Funnel Sans" id="textfontfamilyinput2" type="radio"/>
+               <label for="fontfamily">Font 2</label>
+             </div>
+          </div>
+         
+       </div>
+
+      <div class="w-[45%]">
+        <div class="bg-[#fff] aspect-square h-full flex flex-col items-center justify-center text-center" id="preview">
+           <!-- <img id="previewimg"/> -->
+           <p id="resulttext" class="leading-[22px]">your quote here.</p>
+        </div>
+
+        <button id="downloadbutton" class="mt-5 w-full font-bold rounded bg-gray-300 h-8 cursor-pointer">Download</button>
+      </div>
+    </div>
+   </div>
+    <script>
+      const bgcolorinput = document.getElementById("bgcolorinput");
+      const textcolorinput = document.getElementById("textcolorinput");
+      const textsizeinput = document.getElementById("textsizeinput");
+      const textinput = document.getElementById("textinput");
+      const textfontfamilyinput1 = document.getElementById("textfontfamilyinput1");
+      const textfontfamilyinput2 = document.getElementById("textfontfamilyinput2");
+      
+      const previewimg = document.getElementById("previewimg");
+      const preview = document.getElementById("preview");
+      const resulttext = document.getElementById("resulttext");
+      const downloadbutton = document.getElementById("downloadbutton");
+    
+      bgcolorinput.addEventListener("input",(e)=>{
+        preview.style.backgroundColor = e.target.value;
+      })
+
+      textcolorinput.addEventListener("input",(e)=>{
+        resulttext.style.color = e.target.value;
+      })
+
+      textsizeinput.addEventListener("input",(e)=>{
+        resulttext.style.fontSize = `${e.target.value}px`;
+      })
+
+      textfontfamilyinput1.addEventListener("input",(e)=>{
+        resulttext.style.fontFamily = e.target.value;
+      })
+
+      textfontfamilyinput2.addEventListener("input",(e)=>{
+        resulttext.style.fontFamily = e.target.value;
+      })
+
+      textinput.addEventListener("input",(e)=>{
+        resulttext.innerText = e.target.value;
+      })
+
+      downloadbutton.addEventListener("click", (e)=>{
+        window.html2canvas(preview).then(function(canvas) {
+          document.body.appendChild(canvas);
+        })
+      })
+    </script>
+</body>
+</html>
+

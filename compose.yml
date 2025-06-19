@@ -1,0 +1,10 @@
+version: '1.0'
+services:
+  proxima:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development

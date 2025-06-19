@@ -99,7 +99,12 @@
 
       downloadbutton.addEventListener("click", (e)=>{
         window.html2canvas(preview).then(function(canvas) {
-          document.body.appendChild(canvas);
+          const dataURL = canvas.toDataURL();
+
+          const a = document.createElement('a');
+          a.href = dataURL;
+          a.download = 'myquote.png';
+          a.click();
         })
       })
     </script>

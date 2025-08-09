@@ -98,7 +98,7 @@
       })
 
       downloadbutton.addEventListener("click", (e)=>{
-        window.html2canvas(preview).then(function(canvas) {
+        window.html2canvas(preview, { scale: 2 }).then(function(canvas) {
           const dataURL = canvas.toDataURL();
 
           const a = document.createElement('a');
